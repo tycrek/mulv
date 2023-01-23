@@ -44,5 +44,7 @@ export default function handler(request, response) {
 	const username = request.query.username;
 	const type = request.query.type || 'uuid';
 
-	getUuid(username).then((uuid) => response.status(200).json({ uuid })).catch((err) => (console.error(err), response.status(500).json({ err })));
+	getUuid(username)
+		.then((uuid) => response.status(200).json({ uuid }))
+		.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 }
