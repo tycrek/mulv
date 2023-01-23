@@ -15,8 +15,9 @@ export const MOJANG_API = {
 
 const getUuid = (username) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.UUID.concat(username))
-		.then((uuidResponse) => {
-			console.log(uuidResponse);
+		.then((uuidResponse) => uuidResponse.json())
+		.then((uuid) => {
+			console.log(uuid);
 			return 'hi';
 		}).then(resolve).catch(reject));
 
