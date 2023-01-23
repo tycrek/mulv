@@ -32,8 +32,8 @@ const getSkin = (uuid) => new Promise((resolve, reject) =>
 		.then((profile) => Buffer.from(profile.properties[0].value, 'base64').toString('ascii'))
 		.then((buf) => JSON.parse(buf).textures.SKIN.url)
 		.then((url) => fetch(url))
-		.then((res) => res.json())
-		.then((json) => (console.log(json), json))
+		.then((res) => res.arrayBuffer())
+		.then((buf) => (console.log(buf), buf))
 		//.then((imageResponse) => /*sharp(Buffer.from(imageResponse.data, 'base64'))*/ imageResponse.data)
 		.then(resolve)
 		.catch(reject));
