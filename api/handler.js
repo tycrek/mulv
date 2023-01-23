@@ -32,7 +32,7 @@ const getSkin = (username) => new Promise((resolve, reject) =>
 
 export default function handler(request, response) {
 	response.status(200).json({
-		body: request,
+		body: 'request',
 		query: request.query,
 		cookies: request.cookies,
 	});
