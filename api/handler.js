@@ -33,7 +33,7 @@ const getSkin = (uuid) => new Promise((resolve, reject) =>
 		.then((buf) => JSON.parse(buf).textures.SKIN.url)
 		.then((url) => fetch(url))
 		.then((res) => res.arrayBuffer())
-		.then((buf) => Buffer.from(buf, 'base64').toString('base64'))
+		//.then((buf) => Buffer.from(buf, 'base64').toString('base64')) // working for base64 string return
 		//.then((imageResponse) => /*sharp(Buffer.from(imageResponse.data, 'base64'))*/ imageResponse.data)
 		.then(resolve)
 		.catch(reject));
@@ -49,6 +49,10 @@ export default function handler(request, response) {
 	else
 		getUuid(username)
 			.then((uuid) => getSkin(uuid))
-			.then((skinData) => (console.log(skinData.length), response.json({ skin: skinData })))
+			//.then((skinData) => (console.log(skinData.length), response.json({ skin: skinData }))) // working for base64
+			.then((skinData) => {
+				response.setHeader('content-type', 'image/png');
+				response.send(skinData);
+			})
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 }
