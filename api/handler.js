@@ -30,7 +30,7 @@ const getSkin = (uuid) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.SKIN.concat(uuid))
 		.then((res) => res.json())
 		.then((profile) => Buffer.from(profile.properties[0].value, 'base64').toString('ascii'))
-		.then((buffer) => fetch(JSON.parse(buffer).textures.SKIN.url))
+		.then((buffer) => (console.log(buffer),fetch(JSON.parse(buffer).textures.SKIN.url)))
 		.then((res) => res.json())
 		.then((json) => (console.log(json), json))
 		//.then((imageResponse) => /*sharp(Buffer.from(imageResponse.data, 'base64'))*/ imageResponse.data)
