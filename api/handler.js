@@ -39,6 +39,11 @@ const getSkin = (uuid) => new Promise((resolve, reject) =>
 		.then(resolve)
 		.catch(reject));
 
+const errHandler = (err, response) => {
+	console.error(err);
+	return response.status(err.message === 'Username not found' ? 400 : 500).json({ err: err.message });
+}
+
 export default function handler(request, response) {
 	const username = request.query.username;
 	const type = request.query.type || 'uuid';
@@ -46,7 +51,7 @@ export default function handler(request, response) {
 	if (type === 'uuid')
 		getUuid(username)
 			.then((uuid) => response.json({ uuid }))
-			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
+			.catch((err) => errHandler(err, response));
 	else
 		getUuid(username)
 			.then((uuid) => getSkin(uuid))
@@ -56,5 +61,5 @@ export default function handler(request, response) {
 				response.setHeader('Content-Disposition', `filename=${username}.png;`);
 				response.send(skinData);
 			})
-			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
+			.catch((err) => errHandler(err, response));
 }
