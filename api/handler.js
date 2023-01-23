@@ -50,6 +50,6 @@ export default function handler(request, response) {
 	else
 		getUuid(username)
 			.then(getSkin)
-			.then((skinData) => response.status(200).arrayBuffer(skinData))
+			.then((skinData) => response.status(200).blob(skinData))
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 }
