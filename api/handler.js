@@ -13,6 +13,13 @@ export const MOJANG_API = {
 	SKIN: 'https://sessionserver.mojang.com/session/minecraft/profile/'
 };
 
+const getUuid = (username) => new Promise((resolve, reject) =>
+	fetch(MOJANG_API.UUID.concat(username))
+		.then((uuidResponse) => {
+			console.log(uuidResponse);
+			return 'hi';
+		}).then(resolve).catch(reject));
+
 /**
  * Gets a player skin using Mojang API's
  */
@@ -31,9 +38,17 @@ const getSkin = (username) => new Promise((resolve, reject) =>
 		.catch(reject));
 
 export default function handler(request, response) {
-	response.status(200).json({
-		body: 'request',
-		query: request.query,
-		cookies: request.cookies,
-	});
+	const username = request.query.username;
+	const type = request.query.type || 'uuid';
+
+	getUuid(username)
+		.then((uuid) => {
+			console.log(uuid);
+
+			response.status(200).json({
+				body: 'request',
+				query: request.query,
+				cookies: request.cookies,
+			});
+		});
 }
