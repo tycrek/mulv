@@ -45,11 +45,11 @@ export default function handler(request, response) {
 
 	if (type === 'uuid')
 		getUuid(username)
-			.then((uuid) => response.status(200).json({ uuid }))
+			.then((uuid) => response.json({ uuid }))
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 	else
 		getUuid(username)
 			.then(getSkin)
-			.then((skinData) => response.status(200).blob(skinData))
+			.then((skinData) => response.blob(skinData))
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 }
