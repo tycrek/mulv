@@ -15,11 +15,10 @@ export const MOJANG_API = {
 
 const getUuid = (username) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.UUID.concat(username))
-		.then((uuidResponse) => uuidResponse.json())
-		.then((uuid) => {
-			console.log(uuid);
-			return 'hi';
-		}).then(resolve).catch(reject));
+		.then((res) => res.json())
+		.then((json) => json.id)
+		.then(resolve)
+		.catch(reject));
 
 /**
  * Gets a player skin using Mojang API's
@@ -42,14 +41,5 @@ export default function handler(request, response) {
 	const username = request.query.username;
 	const type = request.query.type || 'uuid';
 
-	getUuid(username)
-		.then((uuid) => {
-			console.log(uuid);
-
-			response.status(200).json({
-				body: 'request',
-				query: request.query,
-				cookies: request.cookies,
-			});
-		});
+	getUuid(username).then((uuid) => response.status(200).json({ uuid })).catch((err) => (console.error(err), response.status(500).json({ err })));
 }
