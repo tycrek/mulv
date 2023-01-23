@@ -28,9 +28,12 @@ const getUuid = (username) => new Promise((resolve, reject) =>
  */
 const getSkin = (uuid) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.SKIN.concat(uuid))
-		.then((profileResponse) => Buffer.from(profileResponse.data.properties[0].value, 'base64').toString('ascii'))
-		.then((buffer) => fetch(JSON.parse(buffer).textures.SKIN.url, { responseType: 'arraybuffer' }))
-		.then((imageResponse) => /*sharp(Buffer.from(imageResponse.data, 'base64'))*/ imageResponse.data)
+		.then((res) => res.json())
+		.then((profile) => Buffer.from(profile.properties[0].value, 'base64').toString('ascii'))
+		.then((buffer) => fetch(JSON.parse(buffer).textures.SKIN.url))
+		.then((res) => res.json())
+		.then((json) => (console.log(json), json))
+		//.then((imageResponse) => /*sharp(Buffer.from(imageResponse.data, 'base64'))*/ imageResponse.data)
 		.then(resolve)
 		.catch(reject));
 
