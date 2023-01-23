@@ -57,6 +57,7 @@ export default function handler(request, response) {
 			.then((uuid) => getSkin(uuid))
 			//.then((skinData) => (console.log(skinData.length), response.json({ skin: skinData }))) // working for base64
 			.then((skinData) => {
+				response.setHeader('Cache-Control', 's-maxage=10800');
 				response.setHeader('Content-Type', 'image/png');
 				response.setHeader('Content-Disposition', `filename=${username}.png;`);
 				response.send(skinData);
