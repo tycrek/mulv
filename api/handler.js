@@ -34,6 +34,7 @@ const getSkin = (uuid) => new Promise((resolve, reject) =>
 		.then((url) => fetch(url))
 		.then((res) => res.arrayBuffer())
 		//.then((buf) => Buffer.from(buf, 'base64').toString('base64')) // working for base64 string return
+		.then((buf) => Buffer.from(buf, 'base64').toString())
 		//.then((imageResponse) => /*sharp(Buffer.from(imageResponse.data, 'base64'))*/ imageResponse.data)
 		.then(resolve)
 		.catch(reject));
