@@ -48,7 +48,9 @@ export default function handler(request, response) {
 	const username = request.query.username;
 	const type = request.query.type || 'uuid';
 
-	if (type === 'uuid')
+	if (!username || username.length < 1)
+		return response.status(400).json({ err: 'No username provided' });
+	else if (type === 'uuid')
 		getUuid(username)
 			.then((uuid) => response.json({ uuid }))
 			.catch((err) => errHandler(err, response));
