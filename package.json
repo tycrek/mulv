@@ -1,0 +1,15 @@
+{
+	"name": "mulv",
+	"description": "Minecraft UUID Lookup Vercel",
+	"version": "1.0.0",
+	"author": "tycrek <t@tycrek.com> (https://tycrek.com)",
+	"license": "ISC",
+	"homepage": "https://mulv.tycrek.dev",
+	"repository": "github:tycrek/mulv",
+	"scripts": {
+		"render": "node ./node_modules/pagery/dist/pagery.js --views=frontend/ --tailwindFile=frontend/tailwind.css --tailwindConfigFile=frontend/tailwind.config.js --output=public/"
+	},
+	"devDependencies": {
+		"pagery": "^0.2.1"
+	}
+}
