@@ -53,7 +53,7 @@ export default function handler(request, response) {
 			//.then((skinData) => (console.log(skinData.length), response.json({ skin: skinData }))) // working for base64
 			.then((skinData) => {
 				response.setHeader('Content-Type', 'image/png');
-				response.setHeader('Content-Disposition' `attachment; filename=${username}.png;`);
+				response.setHeader('Content-Disposition', `attachment; filename=${username}.png;`);
 				response.send(skinData);
 			})
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
