@@ -49,7 +49,7 @@ export default function handler(request, response) {
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 	else
 		getUuid(username)
-			.then(getSkin)
-			.then((skinData) => response.json({ skin: skinData }))
+			.then((uuid) => getSkin(uuid))
+			.then((skinData) => (console.log(skinData.length), response.json({ skin: skinData })))
 			.catch((err) => (console.error(err), response.status(500).json({ err: err.message })));
 }
