@@ -26,7 +26,7 @@ const getUuid = (username) => new Promise((resolve, reject) =>
 /**
  * Gets a player skin using Mojang API's
  */
-const getSkin = (username) => new Promise((resolve, reject) =>
+const getSkin = (uuid) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.SKIN.concat(uuid))
 		.then((profileResponse) => Buffer.from(profileResponse.data.properties[0].value, 'base64').toString('ascii'))
 		.then((buffer) => fetch(JSON.parse(buffer).textures.SKIN.url, { responseType: 'arraybuffer' }))
