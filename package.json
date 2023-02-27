@@ -6,11 +6,13 @@
 	"license": "ISC",
 	"homepage": "https://mulv.tycrek.dev",
 	"repository": "github:tycrek/mulv",
+	"repoUrl": "https://github.com/tycrek/mulv#readme",
 	"scripts": {
-		"render": "node ./node_modules/pagery/dist/pagery.js --views=frontend/ --tailwindFile=frontend/tailwind.css --tailwindConfigFile=frontend/tailwind.config.js --output=public/"
+		"render": "node ./node_modules/pagery/dist/pagery.js --views=frontend/ --tailwindFile=frontend/tailwind.css --tailwindConfigFile=frontend/tailwind.config.js --data=package.json --output=public/"
 	},
 	"devDependencies": {
 		"pagery": "^0.2.1",
+		"shoelace-fontawesome-pug": "^6.2.1",
 		"shoelace-pug-loader": "^1.0.2"
 	}
 }

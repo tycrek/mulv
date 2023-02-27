@@ -7,14 +7,14 @@ html.sl-theme-dark(lang='en')
 		style
 			!= css
 		//- Shoelace components
+		include ../node_modules/shoelace-fontawesome-pug/sl-fa-mixin.pug
 		include ../node_modules/shoelace-pug-loader/loader.pug
-		- SLCDN.DIST = 'npm/@shoelace-style/shoelace@2.1.0/dist';
 		+slTheme('dark')
-		+slComponents('button','input','radio-group','radio')
+		+slComponents('button','input','radio-group','radio','tooltip','icon-button')
 		//- Vercel Audiences
 		script(defer src='/_vercel/insights/script.js')
 	body.w-full.h-screen.flex-col.flex-center.font-lato.text-neutral-100.bg-neutral-900
-		.max-w-md.flex-col.flex-center.p-8.rounded-2xl.bg-neutral-800
+		.max-w-md.flex-col.flex-center.px-8.pt-8.pb-4.rounded-2xl.bg-neutral-800
 			h1.text-5xl.font-bold.font-space.mb-4 mulv
 			h2.text-xl.text-neutral-200.mb-8 #[strong.font-black M]inecraft #[strong.font-black U]UID #[strong.font-black L]ookup #[strong.font-black V]ercel
 			.flex-center.gap-4
@@ -22,7 +22,8 @@ html.sl-theme-dark(lang='en')
 				sl-radio-group#radio-group(value='uuid')
 					sl-radio(name='uuid' value='uuid') UUID
 					sl-radio(name='skin' value='skin') Skin
-			sl-button.mt-4(onclick='go();') Go
+			sl-button.my-4(onclick='go();') Go
+			sl-tooltip(content='Source code'): sl-icon-button.text-3xl(name='fab-github' label='GitHub' href=data.package.repoUrl target='_blank' library='fa')
 
 			script.
 				const go =() => window.location.href = `https://mulv.tycrek.dev/api/lookup?username=${document.getElementById('name').value}&type=${document.getElementById('radio-group').value}`;
