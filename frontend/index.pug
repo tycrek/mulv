@@ -27,6 +27,7 @@ html.sl-theme-dark(lang='en')
 					sl-radio(name='skin' value='skin') Skin
 			sl-button.my-4(onclick='go();') Go
 			sl-tooltip(content='Source code'): sl-icon-button.text-3xl(name='fab-github' label='GitHub' href=data.package.repoUrl target='_blank' library='fa')
+			.text-xs.text-neutral-500= `v${data.package.version}`
 
 			script.
 				const go =() => window.location.href = `https://mulv.tycrek.dev/api/lookup?username=${document.getElementById('name').value}&type=${document.getElementById('radio-group').value}`;
