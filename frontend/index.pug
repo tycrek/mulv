@@ -4,6 +4,9 @@ html.sl-theme-dark(lang='en')
 		meta(charset='UTF-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		title mulv
+		meta(name='description' content=data.package.metaDescription)
+		meta(property='og:title' content=`${data.package.name} - ${data.package.description}`)
+		meta(property='og:description' content=data.package.metaDescription)
 		style
 			!= css
 		//- Shoelace components
