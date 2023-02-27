@@ -6,10 +6,13 @@ html.sl-theme-dark(lang='en')
 		title mulv
 		style
 			!= css
+		//- Shoelace components
 		include ../node_modules/shoelace-pug-loader/loader.pug
 		- SLCDN.DIST = 'npm/@shoelace-style/shoelace@2.1.0/dist';
 		+slTheme('dark')
 		+slComponents('button','input','radio-group','radio')
+		//- Vercel Audiences
+		script(defer src='/_vercel/insights/script.js')
 	body.w-full.h-screen.flex-col.flex-center.font-lato.text-neutral-100.bg-neutral-900
 		.max-w-md.flex-col.flex-center.p-8.rounded-2xl.bg-neutral-800
 			h1.text-5xl.font-bold.font-space.mb-4 mulv
