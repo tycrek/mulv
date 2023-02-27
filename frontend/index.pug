@@ -6,14 +6,9 @@ html.sl-theme-dark(lang='en')
 		title mulv
 		style
 			!= css
-		link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.88/dist/themes/dark.css')
-		//- Shoelace component loader
-		mixin slComp(name)
-			script(type='module' src=`https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.88/dist/components/${name}/${name}.js`)
-		+slComp('button')
-		+slComp('input')
-		+slComp('radio-group')
-		+slComp('radio')
+		include ../node_modules/shoelace-pug-loader/loader.pug
+		+slTheme('dark')
+		+slComponents('button','input','radio-group','radio')
 	body.w-full.h-screen.flex-col.flex-center.font-lato.text-neutral-100.bg-neutral-900
 		.max-w-md.flex-col.flex-center.p-8.rounded-2xl.bg-neutral-800
 			h1.text-5xl.font-bold.font-space.mb-4 mulv
