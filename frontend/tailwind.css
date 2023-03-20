@@ -6,4 +6,8 @@
 	.flex-center {
 		@apply flex justify-center items-center;
 	}
+
+	.sharper {
+		image-rendering: pixelated;
+	}
 }

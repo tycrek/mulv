@@ -26,8 +26,20 @@ html.sl-theme-dark(lang='en')
 					sl-radio(name='uuid' value='uuid') UUID
 					sl-radio(name='skin' value='skin') Skin
 			sl-button.my-4(onclick='go();') Go
+
+			//- hidden image panel (show on skin lookup)
+			.flex-col.flex-center.hidden.my-4: a#skin-link(target='_blank'): img#skin.w-72.sharper
+
 			sl-tooltip(content='Source code'): sl-icon-button.text-3xl(name='fab-github' label='GitHub' href=data.package.repoUrl target='_blank' library='fa')
 			.text-xs.text-neutral-500= `v${data.package.version}`
 
 			script.
-				const go =() => window.location.href = `https://mulv.tycrek.dev/api/lookup?username=${document.getElementById('name').value}&type=${document.getElementById('radio-group').value}`;
+				const go = () => {
+					const name = document.getElementById('name').value;
+					const url = `https://mulv.tycrek.dev/api/lookup?username=${name}`;
+					if (document.getElementById('radio-group').value === 'skin') {
+						document.getElementById('skin').src = url.concat('&type=skin');
+						document.getElementById('skin-link').href = url.concat('&type=skin');
+						document.querySelector('.hidden').classList.remove('hidden');
+					} else window.location.href = url;
+				};
