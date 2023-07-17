@@ -41,7 +41,7 @@ const getSkin = (uuid) => new Promise((resolve, reject) =>
 
 const errHandler = (err, response) => {
 	console.error(err);
-	return response.status(err.message === 'Username not found' ? 400 : 500).json({ err: err.message });
+	return response.status(err.message === 'Username not found' ? 404 : 500).json({ err: err.message });
 }
 
 export default function handler(request, response) {
