@@ -8,7 +8,7 @@ html.sl-theme-dark(lang='en')
 		meta(property='og:title' content=`${data.package.name} - ${data.package.description}`)
 		meta(property='og:description' content=data.package.metaDescription)
 		style
-			!= css['frontend/tailwind']
+			!= css
 		//- Shoelace components
 		include ../node_modules/shoelace-fontawesome-pug/sl-fa-mixin.pug
 		include ../node_modules/shoelace-pug-loader/loader.pug
