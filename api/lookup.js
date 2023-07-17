@@ -16,7 +16,7 @@ export const MOJANG_API = {
 const getUuid = (username) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.UUID.concat(username))
 		.then((res) => {
-			if (res.status === 204) throw new Error('Username not found');
+			if (res.status === 204 || res.status === 404) throw new Error('Username not found');
 			return res.json();
 		})
 		.then((json) => json.id)
