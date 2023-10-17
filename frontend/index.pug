@@ -13,7 +13,7 @@ html.sl-theme-dark(lang='en')
 		include ../node_modules/shoelace-fontawesome-pug/sl-fa-mixin.pug
 		include ../node_modules/shoelace-pug-loader/loader.pug
 		+slTheme('dark')
-		+slComponents('button','input','radio-group','radio','tooltip','icon-button')
+		+slAuto
 		//- Vercel Audiences
 		script(defer src='/_vercel/insights/script.js')
 	body.w-full.h-screen.flex-col.flex-center.font-lato.text-neutral-100.bg-neutral-900
