@@ -12,8 +12,8 @@
 		"render": "node ./node_modules/pagery/dist/pagery.js --views=frontend/ --tailwindFile=frontend/tailwind.css --tailwindConfigFile=frontend/tailwind.config.js --data=package.json --output=public/"
 	},
 	"devDependencies": {
-		"pagery": "^0.4.0",
-		"shoelace-fontawesome-pug": "^6.2.1",
-		"shoelace-pug-loader": "^1.0.2"
+		"pagery": "^0.6.4",
+		"shoelace-fontawesome-pug": "^6.4.2",
+		"shoelace-pug-loader": "^2.9.2"
 	}
 }
