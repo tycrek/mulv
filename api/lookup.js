@@ -48,6 +48,9 @@ export default function handler(request, response) {
 	const username = request.query.username;
 	const type = request.query.type || 'uuid';
 
+	// Fix CORS
+	response.setHeader('Access-Control-Allow-Origin', '*');
+
 	if (!username || username.length < 1)
 		return response.status(400).json({ err: 'No username provided' });
 	else if (type === 'uuid')
