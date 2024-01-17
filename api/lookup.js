@@ -23,14 +23,11 @@ const getUuid = (username) => new Promise((resolve, reject) =>
 		.then(resolve)
 		.catch(reject));
 
-/**
- * Gets a player skin using Mojang API's
- */
-const getSkin = (uuid) => new Promise((resolve, reject) =>
+const getTextures = (uuid, type) => new Promise((resolve, reject) =>
 	fetch(MOJANG_API.SKIN.concat(uuid))
 		.then((res) => res.json())
 		.then((profile) => Buffer.from(profile.properties[0].value, 'base64').toString('ascii'))
-		.then((buf) => JSON.parse(buf).textures.SKIN.url)
+		.then((buf) => JSON.parse(buf).textures[type.toUpperCase()].url)
 		.then((url) => fetch(url))
 		.then((res) => res.arrayBuffer())
 		.then((buf) => Buffer.from(buf, 'base64'))
@@ -57,11 +54,11 @@ export default function handler(request, response) {
 			.catch((err) => errHandler(err, response));
 	else
 		getUuid(username)
-			.then((uuid) => getSkin(uuid))
+			.then((uuid) => getTextures(uuid, type))
 			.then((skinData) => {
 				response.setHeader('Cache-Control', 's-maxage=10800');
 				response.setHeader('Content-Type', 'image/png');
-				response.setHeader('Content-Disposition', `filename=${username}.png;`);
+				response.setHeader('Content-Disposition', `filename=${username}${type === 'cape' ? '-cape' : ''}.png;`);
 				response.send(skinData);
 			})
 			.catch((err) => errHandler(err, response));

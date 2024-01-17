@@ -25,6 +25,7 @@ html.sl-theme-dark(lang='en')
 				sl-radio-group#radio-group(value='uuid')
 					sl-radio(name='uuid' value='uuid') UUID
 					sl-radio(name='skin' value='skin') Skin
+					sl-radio(name='cape' value='cape') Cape
 			sl-button.my-4(onclick='go();') Go
 
 			//- hidden image panel (show on skin lookup)
@@ -37,9 +38,11 @@ html.sl-theme-dark(lang='en')
 				const go = () => {
 					const name = document.getElementById('name').value;
 					const url = `https://mulv.tycrek.dev/api/lookup?username=${name}`;
-					if (document.getElementById('radio-group').value === 'skin') {
-						document.getElementById('skin').src = url.concat('&type=skin');
-						document.getElementById('skin-link').href = url.concat('&type=skin');
+
+					const reqType = document.getElementById('radio-group').value;
+					if (reqType === 'skin' || reqType === 'cape') {
+						document.getElementById('skin').src = url.concat(`&type=${reqType}`);
+						document.getElementById('skin-link').href = url.concat(`&type=${reqType}`);
 						document.querySelector('.hidden').classList.remove('hidden');
 					} else window.location.href = url;
 				};
