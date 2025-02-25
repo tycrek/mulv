@@ -1,3 +1,9 @@
+# note 2025-02-25: I will no longer be updating this project nor hosting it via Vercel.
+
+Please consider switching to [PlayerDB](https://playerdb.co/) instead.
+
+<br><br><br><br><br><br><br><br><br>
+
 <div align="center">
 
 mulv
